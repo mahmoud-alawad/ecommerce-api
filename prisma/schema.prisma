@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String         @id @default(uuid())
+  email           String         @unique
+  password        String
+  salt            String
+  name            String?
+  address         String?
+  role            Role           @default(USER)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @default(now())
+  phoneNumber     String
+  Purchase        Purchase[]
+  UserTokens      RefreshToken[]
+  UserBrowserInfo UserBrowser[]
+}
+
+model RefreshToken {
+  id          String   @id @unique @default(uuid())
+  hashedToken String
+  userId      String
+  revoked     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  browserInfo String?
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "RefreshToken_userId_fkey")
+}
+
+model UserBrowser {
+  id        String @id @unique @default(uuid())
+  userId    String
+  ip        String
+  userAgent String
+  User      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "UserBrowser_userId_fkey")
+}
+
+model Product {
+  id                 String     @id @default(uuid())
+  name               String
+  sku                String     @unique
+  description        String?
+  urlName            String     @unique
+  picture            String?
+  basePrice          Decimal
+  discountPercentage Int        @default(0)
+  stock              Int        @default(0)
+  createdAt          DateTime   @default(now())
+  language           Language
+  Purchase           Purchase[]
+  categories         Category[]
+}
+
+model Category {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  products Product[]
+}
+
+model Purchase {
+  id            String   @id @default(uuid())
+  userId        String?
+  productId     String
+  amount        Int      @default(1)
+  totalPrice    Decimal
+  reviewNote    Int?
+  reviewComment String?
+  createdAt     DateTime @default(now())
+  product       Product  @relation(fields: [productId], references: [id])
+  user          User?    @relation(fields: [userId], references: [id])
+
+  @@index([productId], map: "Purchase_productId_fkey")
+  @@index([userId], map: "Purchase_userId_fkey")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Language {
+  IT
+  EN
+  AR
+  DE
+}
