@@ -3,16 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others \"yarn dev:server\" \"yarn dev:front\"",
-    "build": "concurrently --kill-others \"yarn build:front\" \"yarn build:server\"",
-    "dev:front": "vite --host",
     "serve": "nodemon --config ./nodemon.config.json",
     "db:migrate": "npx prisma migrate dev --name user-entity --create-only && yarn prisma generate",
     "db:push": "npx prisma db push",
-    "build:front": "run-p type-check build-only",
-    "build:server": "rimraf public/server && tsc -p tsconfig.server.json",
-    "preview": "vite preview",
-    "build-only": "vite build",
+    "build:server": "rimraf public/server && tsc -p tsconfig.json",
     "type-check": "vue-tsc --noEmit",
     "prettier": "prettier --single-quote --trailing-comma all --write",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
