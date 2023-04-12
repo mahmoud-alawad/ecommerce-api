@@ -34,6 +34,7 @@ coverage
 !/.data/.gitkeep
 
 # Dist Files
+/public
 /public/frontend/*
 /public/server/*
 
