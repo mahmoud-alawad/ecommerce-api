@@ -1,43 +1,125 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+############################
+# OS X
+############################
 
-node_modules
 .DS_Store
-dist
-dist-ssr
-coverage
-*.local
+.AppleDouble
+.LSOverride
+Icon
+.Spotlight-V100
+.Trashes
+._*
 
-/cypress/videos/
-/cypress/screenshots/
-# Enviroment variables
+############################
+# Env
+############################
 .env
+!.env.example
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+############################
+# Linux
+############################
+
+*~
+
+
+############################
+# Windows
+############################
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+
+############################
+# Packages
+############################
+
+*.7z
+*.csv
+*.dat
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.seed
+*.so
+*.swo
+*.swp
+*.swn
+*.swm
+*.out
+*.pid
+
+
+############################
+# Logs and databases
+############################
+
+.tmp
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+
+
+############################
+# Misc.
+############################
+
+*#
+ssl
 .idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+nbproject
+public/uploads/*
+!public/uploads/.gitkeep
 
-# Database
-/.data/**
-!/.data/.gitkeep
+############################
+# Node.js
+############################
 
-# Dist Files
-/public
-/public/frontend/*
-/public/server/*
+lib-cov
+lcov.info
+pids
+logs
+results
+/node_modules
+/src/node_modules
+.node_history
 
-# Cache
-/cache
-/cache/**
+############################
+# Tests
+############################
+
+testApp
+coverage
+
+############################
+# Strapi
+############################
+
+license.txt
+exports
+*.cache
+dist
+build
+.strapi-updater.json
+/backend/node_modules/
+/frontend/node_modules/
+/certs
+/certs/**
+!certs/.gitkeep

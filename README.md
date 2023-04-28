@@ -1,0 +1,1 @@
+# Strapi Vuejs Template
